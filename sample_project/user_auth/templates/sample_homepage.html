@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            height: 100vh; 
+        }
+        .container {
+            text-align: center;
+        }
+        .user-email {
+            font-size: 2rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if user %}
+            <p class="user-email">{{ user.email }}</p>
+        {% else %}
+            <p class="user-email">No user found</p>
+        {% endif %}
+    </div>
+</body>
+</html>

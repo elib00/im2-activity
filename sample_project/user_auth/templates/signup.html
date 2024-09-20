@@ -1,5 +1,3 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,6 +12,7 @@
         padding: 20px;
         background-color: #f4f4f4;
       }
+
       .container {
         max-width: 600px;
         margin: 0 auto;
@@ -22,35 +21,71 @@
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       }
+
       h2 {
         margin-bottom: 20px;
         font-size: 24px;
         color: #333;
       }
+
       .form-group {
         margin-bottom: 15px;
       }
+
       .form-group label {
         display: block;
         margin-bottom: 5px;
         font-weight: bold;
       }
+
       .form-group input,
       .form-group select {
-        width: 100%;
+        width: calc(
+          100% - 20px
+        );
         padding: 10px;
+        margin-top: 5px;
         border: 1px solid #ccc;
         border-radius: 4px;
+        display: block;
       }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="date"] {
+        background-color: #fafafa;
+        transition: border-color 0.2s;
+      }
+
+      input[type="text"]:focus,
+      input[type="email"]:focus,
+      input[type="password"]:focus,
+      input[type="date"]:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+
       .form-group input[type="submit"] {
-        background-color: #28a745;
+        background-color: #00008A;
         color: #fff;
         border: none;
         cursor: pointer;
+        width: 100%;
       }
+
       .form-group input[type="submit"]:hover {
-        background-color: #218838;
+        background-color: #0000A0;
+        font-size: 1.1rem;
       }
+
+      fieldset {
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
       .errorlist {
         color: #dc3545;
         font-size: 14px;
@@ -59,7 +94,7 @@
     </style>
   </head>
   <body>
-    <div class="container">
+    <div class="container"> 
       <h2>Sign Up</h2>
 
       <form method="post">
@@ -70,42 +105,113 @@
 
           <div class="form-group">
             {{ user_form.email.label_tag }} {{ user_form.email }}
+            {% if user_form.email.errors %}
+            <div class="errorlist">
+              {% for error in user_form.email.errors %}
+              <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+            {% endif %}
           </div>
 
           <div class="form-group">
-            {{ user_form.username.label_tag }} {{ user_form.username }}
+            {{ user_form.username.label_tag }} {{ user_form.username }} 
+            {% if user_form.username.errors %}
+            <div class="errorlist">
+              {% for error in user_form.username.errors %}
+              <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+            {% endif %}
           </div>
 
           <div class="form-group">
             {{ user_form.password.label_tag }} {{ user_form.password }}
+            {% if user_form.password.errors %}
+            <div class="errorlist">
+              {% for error in user_form.password.errors %}
+              <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+            {% endif %}
           </div>
 
           <div class="form-group">
-            {{ user_form.confirm_password.label_tag }}
-            {{user_form.confirm_password }}
+            {{ user_form.confirm_password.label_tag }} {{user_form.confirm_password }}
+            {% if user_form.confirm_password.errors %}
+                <div class="errorlist">
+                    {% for error in user_form.confirm_password.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+    
           </div>
+
+          {% comment %} {% if user_form.non_field_errors %}
+              <div class="errorlist">
+                  {% for error in user_form.non_field_errors %}
+                      <p>{{ error }}</p>
+                  {% endfor %}
+              </div>
+          {% endif %} {% endcomment %}
         </fieldset>
         <fieldset>
           <legend>Profile Information</legend>
 
           <div class="form-group">
             {{ profile_form.first_name.label_tag }} {{ profile_form.first_name}}
+            {% if user_form.first_name.errors %}
+            <div class="errorlist">
+              {% for error in user_form.first_name.errors %}
+              <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+            {% endif %}
           </div>
 
           <div class="form-group">
             {{ profile_form.last_name.label_tag }} {{ profile_form.last_name }}
+            {% if user_form.last_name.errors %}
+            <div class="errorlist">
+              {% for error in user_form.last_name.errors %}
+              <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+            {% endif %}
           </div>
 
           <div class="form-group">
             {{ profile_form.age.label_tag }} {{ profile_form.age }}
+            {% if user_form.age.errors %}
+            <div class="errorlist">
+              {% for error in user_form.age.errors %}
+              <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+            {% endif %}
           </div>
 
           <div class="form-group">
             {{ profile_form.gender.label_tag }} {{ profile_form.gender }}
+            {% if user_form.gender.errors %}
+            <div class="errorlist">
+              {% for error in user_form.gender.errors %}
+              <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+            {% endif %}
           </div>
 
           <div class="form-group">
             {{ profile_form.birthdate.label_tag }} {{ profile_form.birthdate }}
+            {% if user_form.birthdate.errors %}
+            <div class="errorlist">
+              {% for error in user_form.birthdate.errors %}
+              <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+            {% endif %}
           </div>
         </fieldset>
 

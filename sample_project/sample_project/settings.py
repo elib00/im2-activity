@@ -53,6 +53,8 @@ MIDDLEWARE = [
 
 AUTH_USER_MODEL = "user_auth.User"
 
+LOGIN_URL = "/auth/login/"
+
 ROOT_URLCONF = 'sample_project.urls'
 
 TEMPLATES = [
