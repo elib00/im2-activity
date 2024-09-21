@@ -31,13 +31,9 @@ class ProfileSignupForm(forms.ModelForm):
         model = Profile
         fields = ["first_name", "last_name", "age", "gender", "birthdate"]
     
-class LoginForm(forms.ModelForm):
+class LoginForm(forms.Form):
     email = forms.CharField(max_length=150, label="Email", widget=forms.EmailInput)
     password = forms.CharField(widget=forms.PasswordInput, label="Password")
-    
-    class Meta:
-        model = User
-        fields = ["email", "password"]
 
     def clean(self):
         cleaned_data = super().clean()

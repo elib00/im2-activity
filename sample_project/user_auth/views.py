@@ -1,8 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from .forms import UserSignupForm, ProfileSignupForm, LoginForm
-from .models import User, Profile
+from .models import Profile
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import get_user_model, authenticate, login
+from django.shortcuts import get_object_or_404
+
+#use ang model sa project (custom model)
+User = get_user_model()
 
 class SignupView(View):
     def get(self, request):
@@ -56,13 +61,11 @@ class LoginView(View):
                 request.session["user_id"] = user.id
                 return redirect("sample_home")
             else:
-                login_form.add_error(None, "Invalid username or password")
-                return redirect("sample_home")
+                login_form.add_error(None, "Invalid username or password")    
 
-        # return redirect("sample_home")
         return render(request, "login.html", {"form": login_form})
 
-class SampleHomepageView(View, LoginRequiredMixin):
+class SampleHomepageView(View):
     def get(self, request):
         user_id = request.session.get("user_id")
         user = None

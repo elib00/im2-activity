@@ -58,10 +58,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
-    objects = CustomUserManager()
-    
     USERNAME_FIELD = "email" #auth purposes (unique identifier ni sha)
     REQUIRED_FIELDS = ["username"] #password is already handled (for security reasons daw)
+    
+    objects = CustomUserManager()
     
     def __str__(self):
         return self.username
